@@ -1,0 +1,10 @@
+spring:
+  data:
+    jpa.repositories.enabled: true
+  datasource:
+    initialization-mode: always
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://fanny.db.elephantsql.com:5432/dnmnpyqi
+    username: dnmnpyqi
+    password: e4MWtwApTAC7yesGWoJ8zt1VidQIYhxH
+    continueOnError: true
