@@ -12,6 +12,7 @@ public class TransversalExcepcion extends RuntimeException {
     private Throwable excepcionRaiz;
 
     private TransversalExcepcion(String mensajeUsuario, String mensajeTecnico, Throwable excepcionRaiz) {
+        super(mensajeTecnico, excepcionRaiz);
         setMensajeUsuario(mensajeUsuario);
         setMensajeTecnico(mensajeTecnico);
         setExcepcionRaiz(excepcionRaiz);

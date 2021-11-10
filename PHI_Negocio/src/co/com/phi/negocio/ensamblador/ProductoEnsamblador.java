@@ -3,6 +3,7 @@ package co.com.phi.negocio.ensamblador;
 import co.com.phi.dto.ProductoDTO;
 import co.com.phi.entidad.ProductoEntidad;
 import co.com.phi.negocio.dominio.Producto;
+import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 

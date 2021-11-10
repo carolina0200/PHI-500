@@ -14,8 +14,7 @@ import java.util.Map;
 
 public class CacheMensajeHelper extends MensajeHelper {
 
-    private static final CacheMensajeHelper INSTANCIA = new CacheMensajeHelper();
-    private static final Map<String, MensajeDTO> MAPA_MENSAJES = new HashMap<>();
+    private Map<String, MensajeDTO> MAPA_MENSAJES = new HashMap<>();
 
     private CacheMensajeHelper() {
         cargarMensajes();
@@ -95,27 +94,122 @@ public class CacheMensajeHelper extends MensajeHelper {
                 )
         );
 
+        MAPA_MENSAJES.put(CodigosMensajes.ProductoMensajes.MEN_USU_NOMBRE_OBLIGATORIO,
+                MensajeDTO.crear(CodigosMensajes.ProductoMensajes.MEN_USU_NOMBRE_OBLIGATORIO,
+                        TipoMensajeEnum.USUARIO,
+                        CategoriaMensajeEnum.ERROR,
+                        "El nombre del producto es obligatorio"
+                )
+        );
+
+        MAPA_MENSAJES.put(CodigosMensajes.ProductoMensajes.MEN_TEC_NOMBRE_OBLIGATORIO,
+                MensajeDTO.crear(CodigosMensajes.ProductoMensajes.MEN_TEC_NOMBRE_OBLIGATORIO,
+                        TipoMensajeEnum.TECNICO,
+                        CategoriaMensajeEnum.ERROR,
+                        "El nombre del producto llego en null y es obligatorio para crear el dominio"
+                )
+        );
+
+        MAPA_MENSAJES.put(CodigosMensajes.ProductoMensajes.MEN_USU_PRECIO_OBLIGATORIO,
+                MensajeDTO.crear(CodigosMensajes.ProductoMensajes.MEN_USU_PRECIO_OBLIGATORIO,
+                        TipoMensajeEnum.USUARIO,
+                        CategoriaMensajeEnum.ERROR,
+                        "El precio del producto es obligatorio"
+                )
+        );
+
+        MAPA_MENSAJES.put(CodigosMensajes.ProductoMensajes.MEN_TEC_PRECIO_OBLIGATORIO,
+                MensajeDTO.crear(CodigosMensajes.ProductoMensajes.MEN_TEC_PRECIO_OBLIGATORIO,
+                        TipoMensajeEnum.TECNICO,
+                        CategoriaMensajeEnum.ERROR,
+                        "El precio del producto llego en null y es obligatorio para crear el dominio"
+                )
+        );
+
+        MAPA_MENSAJES.put(CodigosMensajes.ProductoMensajes.MEN_USU_CANTIDAD_OBLIGATORIA,
+                MensajeDTO.crear(CodigosMensajes.ProductoMensajes.MEN_USU_CANTIDAD_OBLIGATORIA,
+                        TipoMensajeEnum.USUARIO,
+                        CategoriaMensajeEnum.ERROR,
+                        "La cantidad del producto es obligatoria"
+                )
+        );
+
+        MAPA_MENSAJES.put(CodigosMensajes.ProductoMensajes.MEN_TEC_CANTIDAD_OBLIGATORIA,
+                MensajeDTO.crear(CodigosMensajes.ProductoMensajes.MEN_TEC_CANTIDAD_OBLIGATORIA,
+                        TipoMensajeEnum.TECNICO,
+                        CategoriaMensajeEnum.ERROR,
+                        "La cantidad del producto llego en null y es obligatoria para crear el dominio"
+                )
+        );
+
+        MAPA_MENSAJES.put(CodigosMensajes.ProductoMensajes.MEN_USU_NOMBRE_MAX_LONG,
+                MensajeDTO.crear(CodigosMensajes.ProductoMensajes.MEN_USU_NOMBRE_MAX_LONG,
+                        TipoMensajeEnum.USUARIO,
+                        CategoriaMensajeEnum.ERROR,
+                        "El nombre del producto tiene más caracteres de los permitidos (255)"
+                )
+        );
+
+        MAPA_MENSAJES.put(CodigosMensajes.ProductoMensajes.MEN_TEC_NOMBRE_MAX_LONG,
+                MensajeDTO.crear(CodigosMensajes.ProductoMensajes.MEN_TEC_NOMBRE_MAX_LONG,
+                        TipoMensajeEnum.TECNICO,
+                        CategoriaMensajeEnum.ERROR,
+                        "El nombre del producto tiene más caracteres de los permitidos (255)"
+                )
+        );
+
+        MAPA_MENSAJES.put(CodigosMensajes.ProductoMensajes.MEN_USU_PRECIO_POSITIVO,
+                MensajeDTO.crear(CodigosMensajes.ProductoMensajes.MEN_USU_PRECIO_POSITIVO,
+                        TipoMensajeEnum.USUARIO,
+                        CategoriaMensajeEnum.ERROR,
+                        "El precio del producto debe ser un numero mayor a 0"
+                )
+        );
+
+        MAPA_MENSAJES.put(CodigosMensajes.ProductoMensajes.MEN_TEC_PRECIO_POSITIVO,
+                MensajeDTO.crear(CodigosMensajes.ProductoMensajes.MEN_TEC_PRECIO_POSITIVO,
+                        TipoMensajeEnum.TECNICO,
+                        CategoriaMensajeEnum.ERROR,
+                        "El precio del producto debe ser un numero positivo"
+                )
+        );
+
+        MAPA_MENSAJES.put(CodigosMensajes.ProductoMensajes.MEN_USU_CANTIDAD_POSITIVA,
+                MensajeDTO.crear(CodigosMensajes.ProductoMensajes.MEN_USU_CANTIDAD_POSITIVA,
+                        TipoMensajeEnum.USUARIO,
+                        CategoriaMensajeEnum.ERROR,
+                        "La cantidad del producto debe ser un numero mayor a 0"
+                )
+        );
+
+        MAPA_MENSAJES.put(CodigosMensajes.ProductoMensajes.MEN_TEC_CANTIDAD_POSITIVA,
+                MensajeDTO.crear(CodigosMensajes.ProductoMensajes.MEN_TEC_CANTIDAD_POSITIVA,
+                        TipoMensajeEnum.TECNICO,
+                        CategoriaMensajeEnum.ERROR,
+                        "La cantidad del producto debe ser un numero positivo"
+                )
+        );
     }
 
     public static CacheMensajeHelper obtenerCacheMensajeHelper() {
-        return INSTANCIA;
+        return new CacheMensajeHelper();
     }
 
     @Override
     public MensajeDTO obtenerMensaje(String codigo) {
-        if (UtilTexto.cadenaEstaVaciaONula(codigo)) {
+        /*if (UtilTexto.cadenaEstaVaciaONula(codigo)) {
             throw TransversalExcepcion.crear(
-                    MensajeHelper.obtenerMensajeHelper().obtenerTextoMensaje(CodigosMensajes.CacheMensajeHelperMensajes.MEN_USU_PROBLEMAS_CODIGO_MENSAJE_NULO_VACIO),
-                    MensajeHelper.obtenerMensajeHelper().obtenerTextoMensaje(CodigosMensajes.CacheMensajeHelperMensajes.MEN_TEC_PROBLEMAS_CODIGO_MENSAJE_NULO_VACIO)
+                    obtenerTextoMensaje(CodigosMensajes.CacheMensajeHelperMensajes.MEN_USU_PROBLEMAS_CODIGO_MENSAJE_NULO_VACIO),
+                    obtenerTextoMensaje(CodigosMensajes.CacheMensajeHelperMensajes.MEN_TEC_PROBLEMAS_CODIGO_MENSAJE_NULO_VACIO)
             );
         }
 
         if(MAPA_MENSAJES.containsKey(codigo)) {
             throw TransversalExcepcion.crear(
-                    MensajeHelper.obtenerMensajeHelper().obtenerTextoMensaje(CodigosMensajes.CacheMensajeHelperMensajes.MEN_USU_PROBLEMAS_CODIGO_MENSAJE_NO_EXISTENTE),
-                    MensajeHelper.obtenerMensajeHelper().obtenerTextoMensaje(CodigosMensajes.CacheMensajeHelperMensajes.MEN_TEC_PROBLEMAS_CODIGO_MENSAJE_NO_EXISTENTE)
+                    obtenerTextoMensaje(CodigosMensajes.CacheMensajeHelperMensajes.MEN_USU_PROBLEMAS_CODIGO_MENSAJE_NO_EXISTENTE),
+                    obtenerTextoMensaje(CodigosMensajes.CacheMensajeHelperMensajes.MEN_TEC_PROBLEMAS_CODIGO_MENSAJE_NO_EXISTENTE)
             );
-        }
+        }*/
 
         return MAPA_MENSAJES.get(codigo);
     }

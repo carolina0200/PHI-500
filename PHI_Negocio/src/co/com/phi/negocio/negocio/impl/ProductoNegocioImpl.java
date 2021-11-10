@@ -7,6 +7,7 @@ import co.com.phi.negocio.negocio.ProductoNegocio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -30,11 +31,13 @@ public class ProductoNegocioImpl implements ProductoNegocio {
 
     @Override
     public void guardar(List<Producto> productos) {
+        productos.forEach(producto -> producto.setActualizacion(new Date()));
         productoDAO.saveAll(ensamblador.dominiosAEntidades(productos));
     }
 
     @Override
     public Producto nuevo(Producto producto) {
+        producto.setActualizacion(new Date());
         return ensamblador.entidadADominio(productoDAO.save(ensamblador.dominioAEntidad(producto)));
     }
 

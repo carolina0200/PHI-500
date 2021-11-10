@@ -10,6 +10,9 @@ public class ProductoDTO {
     private long cantidad;
     private Date actualizacion;
 
+    public ProductoDTO() {
+    }
+
     public ProductoDTO(long productoId, String nombre, long precio, long cantidad, Date actualizacion) {
         this.productoId = productoId;
         this.nombre = nombre;
@@ -17,6 +20,8 @@ public class ProductoDTO {
         this.cantidad = cantidad;
         this.actualizacion = actualizacion;
     }
+
+
 
     public long getProductoId() {
         return productoId;
